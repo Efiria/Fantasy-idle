@@ -1,0 +1,53 @@
+body {
+    background-color: #f0f8ff;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-family: 'Cursive', sans-serif;
+    color: #4a4a4a;
+}
+
+#production-row {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+}
+
+.building, .upgrade {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button {
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+h4, h5 {
+    color: #333;
+}
+
+#production-overall, #production-details {
+    padding: 10px;
+}
+
+#buildings-section {
+    overflow-y: auto;
+    padding-right: 10px; 
+    max-height: 799px;
+}
+
+.building {
+    padding: 5px 10px;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #e9f0f8;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
