@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProduction();
 
     setInterval(updateResources, 1000);
-    setInterval(renderProduction, 500); // mise à jour en temps réel
+    setInterval(renderBuildings, 1000);
+    setInterval(renderProduction, 500);
 });
 
 function renderResources() {
@@ -23,6 +24,11 @@ function renderBuildings() {
     container.innerHTML = '<h4>Buildings</h4>';
 
     buildingsData.forEach(building => {
+        if (resources < building.cost && building.count === 0 && !building.render) {
+            return
+        }else {
+            building.render = true
+        }
         const div = document.createElement('div');
         div.className = 'building card p-2 mb-2';
 
@@ -72,6 +78,9 @@ function renderProduction() {
     // Details per building
     detailsDiv.innerHTML = '<h5>Production Details by Building</h5>';
     buildingsData.forEach(b => {
+        if (b.count === 0) {
+            return
+        }
         const prod = b.resourcesPerSecond * getBuildingMultiplier(b.id) * b.count;
         const p = document.createElement('p');
         p.innerText = `${b.name}: ${formatNumber(prod)} / sec (${b.count} owned)`;
@@ -84,9 +93,9 @@ function buyUpgrade(id) {
     if (resources >= upgrade.cost && !upgrade.purchased) {
         resources -= upgrade.cost;
         upgrade.purchased = true;
-        // Appliquer le multiplicateur
+
         const targetBuilding = buildingsData.find(b => b.id === upgrade.target);
-        targetBuilding.multiplier = getBuildingMultiplier(targetBuilding.id) * upgrade.multiplier || upgrade.multiplier;
+        targetBuilding.multiplier = getBuildingMultiplier(targetBuilding.id) * upgrade.multiplier;
         renderResources();
         renderBuildings();
         renderUpgrades();
@@ -94,8 +103,13 @@ function buyUpgrade(id) {
 }
 
 function getBuildingMultiplier(id) {
-    const upgrade = upgradesData.find(u => u.target === id && u.purchased);
-    return upgrade ? upgrade.multiplier : 1;
+    let multiplier = 0
+    upgradesData.forEach(upg => {
+        if (upg.target === id && upg.purchased) {
+            multiplier += upg.multiplier
+        }
+    });
+    return (multiplier == 0) ? 1 : multiplier
 }
 
 function buyBuilding(id) {

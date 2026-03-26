@@ -4,28 +4,32 @@ const buildings = [
         name: 'Wizard Tower',
         cost: 10,
         resourcesPerSecond: 1,
-        count: 0
+        count: 0,
+        display: true
     },
     {
         id: 'dragon_lair',
         name: 'Dragon Lair',
         cost: 100,
         resourcesPerSecond: 10,
-        count: 0
+        count: 0,
+        display: false
     },
     {
         id: 'elven_farm',
         name: 'Elven Farm',
         cost: 500,
         resourcesPerSecond: 50,
-        count: 0
+        count: 0,
+        display: false
     },
      {
         id: 'heroes_factory',
         name: 'Heroes Factory',
-        cost: 100,
+        cost: 1000,
         resourcesPerSecond: 100,
-        count: 0
+        count: 0,
+        display: false
     },
 ];
 
@@ -56,5 +60,23 @@ const upgrades = [
         cost: 2500,
         multiplier: 2,
         purchased: false
-    }
+    },
+    {
+        id: 'wizard_tower_upgrade_2',
+        name: 'Wizard Tower Upgrade II',
+        target: 'wizard_tower',
+        description: 'Multiply production by 2',
+        cost: 5000,
+        multiplier: 2,
+        purchased: false
+    },
+    {
+        id: 'heroes_factory_upgrade',
+        name: 'Heroes Factory Upgrade',
+        target: 'heroes_factory',
+        description: 'Multiply production by 2',
+        cost: 10000,
+        multiplier: 2,
+        purchased: false
+    },
 ];
