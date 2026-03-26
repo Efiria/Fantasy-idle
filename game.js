@@ -56,8 +56,7 @@ function renderUpgrades() {
     upgradesData.forEach(upg => {
         const btn = document.createElement('button');
         btn.className = upg.purchased ? 'btn btn-secondary disabled m-2' : 'btn btn-warning m-2';
-        btn.innerText = `${upg.name} (${formatNumber(upg.cost)})`;
-        btn.title = upg.description;
+        btn.innerText = `${upg.name} (${formatNumber(upg.cost)}) \n ${upg.description}`;
         btn.disabled = upg.purchased;
         btn.addEventListener('click', () => buyUpgrade(upg.id));
         container.appendChild(btn);
