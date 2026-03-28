@@ -11,13 +11,24 @@
     <div class="container my-4">
         <h1 class="text-center mb-4">Fantasy World Idle</h1>
         <div class="row game-display">
-            <div class="col-4" id="production-row">
+            <div class="col-3" id="production-row">
                 <h4>Ressources: <span id="resources">0</span></h4>
                 <div class="col" id="production-overall"></div>
                 <div class="col" id="production-details"></div>
             </div>
-            <div class="col-4" id="buildings-section"></div>
-            <div class="col-4" id="upgrades-section"></div>
+            <div class="col-5" id="buildings-section"></div>
+            <div class="col-3" id="upgrades-section"></div>
+            <div class="col-1" id="settings-section">
+                <div class="row justify-content-center align-items-center g-2">
+                    <h4>Settings</h4>
+                    <div class="col">
+                        <button type="button" name="save" id="save" class="btn btn-primary" onclick="saveData()">Save data</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" name="delete" id="delete" class="btn btn-danger" onclick="clearData()">Delete data</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     

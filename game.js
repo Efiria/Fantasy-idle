@@ -5,15 +5,40 @@ let upgradesData = [];
 document.addEventListener('DOMContentLoaded', () => {
     buildingsData = JSON.parse(JSON.stringify( buildings ));
     upgradesData = JSON.parse(JSON.stringify( upgrades ));
+    
+    if (localStorage.length != 0) {
+        loadData();
+    }
+
     renderResources();
     renderBuildings();
     renderUpgrades();
     renderProduction();
-
+    
     setInterval(updateResources, 1000);
     setInterval(renderBuildings, 1000);
     setInterval(renderProduction, 500);
 });
+
+function saveData() {
+    buildingsData.forEach(building => {
+        localStorage.setItem(building.name, [building.count,building.cost])
+    })
+    
+    upgradesData.forEach(upg => {
+        localStorage.setItem(upg.id, upg.purchased)
+    })
+
+    localStorage.setItem("resources", resources)
+}
+
+function loadData() {
+    resources = parseInt(localStorage.getItem("resources"))
+}
+
+function clearData() {
+    localStorage.clear()
+}
 
 function renderResources() {
     document.getElementById('resources').innerText = formatNumber(resources);
