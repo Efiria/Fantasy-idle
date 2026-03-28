@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (localStorage.length != 0) {
         loadData();
+    } else {
+        saveData();
     }
 
     renderResources();
@@ -18,22 +20,37 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateResources, 1000);
     setInterval(renderBuildings, 1000);
     setInterval(renderProduction, 500);
+
+    setInterval(saveData, 60000*5);
 });
 
 function saveData() {
     buildingsData.forEach(building => {
-        localStorage.setItem(building.name, [building.count,building.cost])
+        localStorage.setItem(building.name, [building.count,building.cost]);
     })
     
     upgradesData.forEach(upg => {
-        localStorage.setItem(upg.id, upg.purchased)
+        localStorage.setItem(upg.id, upg.purchased);
     })
 
-    localStorage.setItem("resources", resources)
+    localStorage.setItem("resources", resources);
 }
 
 function loadData() {
     resources = parseInt(localStorage.getItem("resources"))
+    buildingsData.forEach(building => {
+        build = localStorage.getItem(building.name).split(",");
+        building.count = parseInt(build[0]);
+        building.cost = parseInt(build[1]);
+    })
+    
+    upgradesData.forEach(upg => {
+        if (localStorage.getItem(upg.id) == "true") {
+            upg.purchased = true
+        } else {
+            upg.purchased = false
+        }
+    })
 }
 
 function clearData() {
