@@ -51,3 +51,18 @@ h4, h5 {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+#upgrades-section .btn, #settings-section .btn {
+    font-size: small;
+}
+
+#saveModal .modal-header {
+    background-color: #dc3545;
+}
+
+#saveModal .btn-close:hover {
+    background-color: #fff;
+}
+
+#saveModalLabel {
+    color: #fff;
+}
