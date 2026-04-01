@@ -80,9 +80,9 @@ const upgrades = [
         id: 'wizard_tower_upgrade_2',
         name: 'Wizard Tower Upgrade II',
         target: 'wizard_tower',
-        description: 'Multiply production by 5',
+        description: 'Multiply production by 10',
         cost: 5000,
-        multiplier: 3,
+        multiplier: 10,
         minBuilding: 25,
         purchased: false
     },
@@ -90,9 +90,9 @@ const upgrades = [
         id: 'wizard_tower_upgrade_3',
         name: 'Wizard Tower Upgrade III',
         target: 'wizard_tower',
-        description: 'Multiply production by 10',
+        description: 'Multiply production by 100',
         cost: 50000,
-        multiplier: 3,
+        multiplier: 100,
         minBuilding: 50,
         purchased: false
     },
