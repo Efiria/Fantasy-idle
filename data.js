@@ -10,7 +10,7 @@ const buildings = [
     {
         id: 'dragon_lair',
         name: 'Dragon Lair',
-        cost: 100,
+        cost: 150,
         resourcesPerSecond: 10,
         count: 0,
         display: false
@@ -18,7 +18,7 @@ const buildings = [
     {
         id: 'elven_farm',
         name: 'Elven Farm',
-        cost: 750,
+        cost: 950,
         resourcesPerSecond: 50,
         count: 0,
         display: false
@@ -34,7 +34,7 @@ const buildings = [
     {
         id: 'necromancer_graveyard',
         name: 'Necromancer Graveyard',
-        cost: 5000,
+        cost: 7500,
         resourcesPerSecond: 300,
         count: 0,
         display: false
@@ -42,7 +42,7 @@ const buildings = [
     {
         id: 'thieves_guild',
         name: 'Thieves Guild',
-        cost: 10000,
+        cost: 25000,
         resourcesPerSecond: 600,
         count: 0,
         display: false
@@ -50,7 +50,7 @@ const buildings = [
     {
         id: 'holy_cathedral',
         name: 'Holy Cathedral',
-        cost: 25000,
+        cost: 75000,
         resourcesPerSecond: 1000,
         count: 0,
         display: false
@@ -58,8 +58,8 @@ const buildings = [
     {
         id: 'demon_lord_castle',
         name: 'Demon Lord Castle',
-        cost: 50000,
-        resourcesPerSecond: 3000,
+        cost: 250000,
+        resourcesPerSecond: 5000,
         count: 0,
         display: false
     },
@@ -80,9 +80,9 @@ const upgrades = [
         id: 'wizard_tower_upgrade_2',
         name: 'Wizard Tower Upgrade II',
         target: 'wizard_tower',
-        description: 'Multiply production by 10',
+        description: 'Multiply production by 25',
         cost: 5000,
-        multiplier: 10,
+        multiplier: 25,
         minBuilding: 25,
         purchased: false
     },
@@ -94,6 +94,16 @@ const upgrades = [
         cost: 50000,
         multiplier: 100,
         minBuilding: 50,
+        purchased: false
+    },
+    {
+        id: 'wizard_tower_upgrade_4',
+        name: 'Wizard Tower Upgrade IV',
+        target: 'wizard_tower',
+        description: 'Multiply production by 200',
+        cost: 150000,
+        multiplier: 200,
+        minBuilding: 100,
         purchased: false
     },
     {

@@ -105,9 +105,7 @@ function renderUpgrades() {
     container.innerHTML = '<h4>Upgrades</h4>';
 
     upgradesData.forEach(upg => {
-
         let build = buildingsData.find(building => building.id === upg.target);
-        // console.log(build.count,upg.minBuilding);
         if (build.count < upg.minBuilding) {
             return
         }
