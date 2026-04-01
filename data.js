@@ -18,16 +18,48 @@ const buildings = [
     {
         id: 'elven_farm',
         name: 'Elven Farm',
-        cost: 500,
+        cost: 750,
         resourcesPerSecond: 50,
         count: 0,
         display: false
     },
-     {
+    {
         id: 'heroes_factory',
         name: 'Heroes Factory',
-        cost: 1000,
+        cost: 2500,
         resourcesPerSecond: 100,
+        count: 0,
+        display: false
+    },
+    {
+        id: 'necromancer_graveyard',
+        name: 'Necromancer Graveyard',
+        cost: 5000,
+        resourcesPerSecond: 300,
+        count: 0,
+        display: false
+    },
+    {
+        id: 'thieves_guild',
+        name: 'Thieves Guild',
+        cost: 10000,
+        resourcesPerSecond: 600,
+        count: 0,
+        display: false
+    },
+    {
+        id: 'holy_cathedral',
+        name: 'Holy Cathedral',
+        cost: 25000,
+        resourcesPerSecond: 1000,
+        count: 0,
+        display: false
+    },
+    {
+        id: 'demon_lord_castle',
+        name: 'Demon Lord Castle',
+        cost: 50000,
+        resourcesPerSecond: 3000,
         count: 0,
         display: false
     },
@@ -42,6 +74,26 @@ const upgrades = [
         cost: 50,
         multiplier: 2,
         minBuilding: 10,
+        purchased: false
+    },
+    {
+        id: 'wizard_tower_upgrade_2',
+        name: 'Wizard Tower Upgrade II',
+        target: 'wizard_tower',
+        description: 'Multiply production by 5',
+        cost: 5000,
+        multiplier: 3,
+        minBuilding: 25,
+        purchased: false
+    },
+    {
+        id: 'wizard_tower_upgrade_3',
+        name: 'Wizard Tower Upgrade III',
+        target: 'wizard_tower',
+        description: 'Multiply production by 10',
+        cost: 50000,
+        multiplier: 3,
+        minBuilding: 50,
         purchased: false
     },
     {
@@ -62,16 +114,6 @@ const upgrades = [
         cost: 2500,
         multiplier: 2,
         minBuilding: 10,
-        purchased: false
-    },
-    {
-        id: 'wizard_tower_upgrade_2',
-        name: 'Wizard Tower Upgrade II',
-        target: 'wizard_tower',
-        description: 'Multiply production by 3',
-        cost: 5000,
-        multiplier: 3,
-        minBuilding: 25,
         purchased: false
     },
     {
