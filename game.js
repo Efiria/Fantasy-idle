@@ -2,6 +2,9 @@ let resources = 10;
 let buildingsData = [];
 let upgradesData = [];
 
+const toastSave = document.getElementById('saveToast')
+const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastSave)
+
 document.addEventListener('DOMContentLoaded', () => {
     buildingsData = JSON.parse(JSON.stringify( buildings ));
     upgradesData = JSON.parse(JSON.stringify( upgrades ));
@@ -19,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setInterval(updateResources, 1000);
     setInterval(renderBuildings, 1000);
+    setInterval(renderUpgrades, 1000);
     setInterval(renderProduction, 500);
 
     setInterval(saveData, 60000*5);
@@ -34,14 +38,18 @@ function saveData() {
     })
 
     localStorage.setItem("resources", resources);
+    toastBootstrap.show()
 }
 
 function loadData() {
     resources = parseInt(localStorage.getItem("resources"))
     buildingsData.forEach(building => {
-        build = localStorage.getItem(building.name).split(",");
-        building.count = parseInt(build[0]);
-        building.cost = parseInt(build[1]);
+        // console.log(localStorage.getItem(building.name))
+        if (localStorage.getItem(building.name)) {
+            build = localStorage.getItem(building.name).split(",");
+            building.count = parseInt(build[0]);
+            building.cost = parseInt(build[1]);
+        }
     })
     
     upgradesData.forEach(upg => {
@@ -51,6 +59,7 @@ function loadData() {
             upg.purchased = false
         }
     })
+    saveData();
 }
 
 function clearData() {
@@ -96,6 +105,12 @@ function renderUpgrades() {
     container.innerHTML = '<h4>Upgrades</h4>';
 
     upgradesData.forEach(upg => {
+
+        let build = buildingsData.find(building => building.id === upg.target);
+        // console.log(build.count,upg.minBuilding);
+        if (build.count < upg.minBuilding) {
+            return
+        }
         const btn = document.createElement('button');
         btn.className = upg.purchased ? 'btn btn-secondary disabled m-2' : 'btn btn-warning m-2';
         btn.innerText = `${upg.name} (${formatNumber(upg.cost)}) \n ${upg.description}`;
