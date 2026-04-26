@@ -88,7 +88,8 @@ function renderBuildings() {
                 <h5 class="card-title">${building.name}</h5>
                 <p class="card-text">Cost: ${formatNumber(building.cost)} resources</p>
                 <p class="card-text">Owned: ${building.count}</p>
-                <p class="card-text">Production: ${formatNumber(building.resourcesPerSecond * getBuildingMultiplier(building.id))} / sec</p>
+                <p class="card-text">Base Production: ${formatNumber(building.resourcesPerSecond)} / sec</p>
+                <p class="card-text">Current Production: ${formatNumber(building.resourcesPerSecond * getBuildingMultiplier(building.id))} / sec</p>
                 <button class="btn btn-success" data-id="${building.id}">Buy</button>
             </div>
         `;
@@ -105,9 +106,21 @@ function renderUpgrades() {
     container.innerHTML = '<h4>Upgrades</h4>';
 
     upgradesData.forEach(upg => {
-        let build = buildingsData.find(building => building.id === upg.target);
-        if (build.count < upg.minBuilding) {
-            return
+        if (upg.target == "global") {
+            let display = true
+            buildingsData.forEach(building => {
+                if (building.count < upg.minBuilding) {
+                    display = false
+                }
+            })
+            if (!display) {
+                return
+            }
+        } else {
+            let build = buildingsData.find(building => building.id === upg.target);
+            if (build.count < upg.minBuilding) {
+                return
+            }
         }
         const btn = document.createElement('button');
         btn.className = upg.purchased ? 'btn btn-secondary disabled m-2' : 'btn btn-warning m-2';
@@ -148,8 +161,10 @@ function buyUpgrade(id) {
         resources -= upgrade.cost;
         upgrade.purchased = true;
 
-        const targetBuilding = buildingsData.find(b => b.id === upgrade.target);
-        targetBuilding.multiplier = getBuildingMultiplier(targetBuilding.id) * upgrade.multiplier;
+        if (upgrade.target != "global") {
+            const targetBuilding = buildingsData.find(b => b.id === upgrade.target);
+            targetBuilding.multiplier = getBuildingMultiplier(targetBuilding.id) * upgrade.multiplier;
+        }
         renderResources();
         renderBuildings();
         renderUpgrades();
@@ -159,7 +174,7 @@ function buyUpgrade(id) {
 function getBuildingMultiplier(id) {
     let multiplier = 0
     upgradesData.forEach(upg => {
-        if (upg.target === id && upg.purchased) {
+        if ((upg.target === id && upg.purchased) || upg.target === "global" && upg.purchased) {
             multiplier += upg.multiplier
         }
     });
